@@ -9,7 +9,7 @@
     --success-color: #10b981;
     --warning-color: #f59e0b;
     --danger-color: #ef4444;
-    
+
     --transition: all 0.3s ease;
     --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
     --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
@@ -97,38 +97,31 @@ img {
     margin: 0 auto;
 }
 
-/* Navigation */
+/* Header Styles */
 .header {
     position: fixed;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.5rem 5%;
     width: 100%;
     top: 0;
     left: 0;
     z-index: 1000;
     background-color: rgba(255, 255, 255, 0.95);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow-sm);
     transition: var(--transition);
 }
 
-.navbar.scrolled {
-    padding: 1rem 0;
-    background-color: rgba(255, 255, 255, 0.98);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-.navbar .container {
+.header-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 1.5rem 5%;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .logo-container {
     display: flex;
     align-items: center;
-    gap: .5rem;
+    gap: 0.5rem;
 }
 
 .logo {
@@ -137,17 +130,22 @@ img {
     border-radius: 25px;
 }
 
+/* Navigation Container */
+.nav-container {
+    display: flex;
+    align-items: center;
+}
+
 .nav-links {
     display: flex;
     gap: 2rem;
+    margin-left: auto; 
 }
-
 .nav-links a {
     font-weight: 500;
     transition: var(--transition);
     position: relative;
 }
-
 .nav-links a::after {
     content: '';
     position: absolute;
@@ -158,11 +156,11 @@ img {
     background-color: var(--primary-color);
     transition: var(--transition);
 }
-
 .nav-links a:hover::after {
     width: 100%;
 }
 
+/* Mobile Menu Styles */
 .menu-toggle {
     display: none;
     background: none;
@@ -171,6 +169,38 @@ img {
     color: var(--light-color);
     cursor: pointer;
 }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .header-container {
+        padding: 1rem 5%;
+    }
+    
+    .menu-toggle {
+        display: block;
+        margin-left: auto; /* Pushes toggle button to the right */
+    }
+
+    .nav-links {
+        position: fixed;
+        top: 80px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 80px);
+        background-color: white;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 3rem 0;
+        gap: 2rem;
+        transition: var(--transition);
+    }
+
+    .nav-links.active {
+        left: 0;
+    }
+}
+
 
 /* Hero Section */
 .hero {
@@ -280,18 +310,27 @@ img {
 }
 
 .team-grid {
-    display: flex; /* Use flexbox for a single row layout */
-    gap: 2rem; /* Space between team cards */
-    padding: 1rem; /* Optional padding for better spacing */
-    justify-content: center; /* Center the team cards */
-    max-width: 1200px; /* Limit the width of the team section */
-    margin: 0 auto; /* Center the team section */
-    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    display: flex;
+    /* Use flexbox for a single row layout */
+    gap: 2rem;
+    /* Space between team cards */
+    padding: 1rem;
+    /* Optional padding for better spacing */
+    justify-content: center;
+    /* Center the team cards */
+    max-width: 1200px;
+    /* Limit the width of the team section */
+    margin: 0 auto;
+    /* Center the team section */
+    flex-wrap: wrap;
+    /* Allow wrapping on smaller screens */
 }
 
 .team-card {
-    flex: 0 0 auto; /* Prevent flex items from growing or shrinking */
-    width: 250px; /* Set a fixed width for each team card */
+    flex: 0 0 auto;
+    /* Prevent flex items from growing or shrinking */
+    width: 250px;
+    /* Set a fixed width for each team card */
     background-color: white;
     border-radius: 0.75rem;
     overflow: hidden;
@@ -537,13 +576,17 @@ img {
     }
 
     .team-grid {
-        flex-direction: column; /* Stack team cards vertically on smaller screens */
-        align-items: center; /* Center team cards */
+        flex-direction: column;
+        /* Stack team cards vertically on smaller screens */
+        align-items: center;
+        /* Center team cards */
     }
 
     .team-card {
-        width: 90%; /* Make team cards responsive */
-        max-width: 300px; /* Limit max width */
+        width: 90%;
+        /* Make team cards responsive */
+        max-width: 300px;
+        /* Limit max width */
     }
 }
 
